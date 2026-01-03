@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Image → Prompt (Ollama LLaVA)</title>
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div>
+        <div class="brand">
+          <div class="logo"></div>
+          <div>
+            <h1>Image → Prompt</h1>
+            <p class="subtitle">
+              Upload an image (or drag & drop). The backend sends it to Ollama LLaVA and returns a clean prompt you can reuse with any image model.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pill" title="Backend status is shown in the footer message">
+        <span class="dot"></span>
+        Local Mode
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="inner">
+
+        <div class="controls">
+          <div class="leftControls">
+            <label class="file">
+              <input id="file" type="file" accept="image/*" />
+              <strong>Choose image</strong>
+              <span id="fileName">No file selected</span>
+            </label>
+
+            <button id="btn" class="btn primary" disabled>Generate Prompt</button>
+            <button id="copy" class="btn copy" disabled>Copy</button>
+          </div>
+
+          <div class="pill" id="hintPill" title="Tip">
+            Drop a smaller image for faster results on CPU.
+          </div>
+        </div>
+
+        <div class="grid">
+          <!-- Preview -->
+          <div class="panel">
+            <div class="panelHeader">
+              <h3>Preview</h3>
+              <span class="pill small">Drag & Drop</span>
+            </div>
+
+            <div id="dropzone" class="dropzone">
+              <div id="dropHint" class="dropHint">
+                <b>Drop an image here</b><br/>
+                or click “Choose image”
+              </div>
+              <img id="preview" class="previewImg" alt="preview" />
+            </div>
+          </div>
+
+          <!-- Output -->
+          <div class="panel">
+            <div class="panelHeader">
+              <h3>Generated Prompt</h3>
+              <span class="pill small">Ready to copy</span>
+            </div>
+            <textarea id="out" placeholder="Your prompt will appear here..." readonly></textarea>
+
+            <div class="statusRow">
+              <div id="status"></div>
+              <div id="err" class="error"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
